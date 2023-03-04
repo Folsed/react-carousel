@@ -1,0 +1,200 @@
+/* Carousel Section */
+
+.welcome-carousel {
+    position: relative;
+    width: 100%;
+    grid-template-rows: 500px 70px;
+    display: grid;
+    grid-template-areas:
+        "carousel"
+        "pages";
+}
+
+.carousel-wrapper {
+    position: relative;
+    display: grid;
+    margin: 0 auto;
+    text-align: center;
+    grid-area: carousel;
+    grid-template-areas: "viewbox";
+    align-items: center;
+}
+
+.arrow-wrapper {
+    display: grid;
+    grid-area: viewbox;
+}
+
+
+.arrow {
+    text-align: center;
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border: none;
+    transition: all 0.3s;
+}
+
+.arrowRight {
+    justify-self: end;
+    transform: translateX(40px);
+}
+
+.arrowLeft {
+    transform: scaleX(-1) translateX(40px);
+}
+
+.svgArrowIcon {
+    vertical-align: middle;
+}
+
+.arrowLeft.hidden,
+.arrowRight.hidden {
+    display: none;
+}
+
+
+.arrow:hover {
+    background-color: #1e1f24b4;
+    fill: white;
+    transition: all 0.3s;
+}
+
+
+
+.carousel-main-container {
+    grid-area: viewbox;
+    width: 1000px;
+}
+
+
+.carousel-main-container {
+    overflow: hidden;
+    text-align: center;
+}
+
+.inner-carousel-track {
+    --carousel__col-count: 1;
+    --carousel__row-count: 1;
+}
+
+.inner-carousel-track {
+    display: grid;
+    grid-auto-columns: calc(100%/var(--carousel__col-count));
+    grid-template-rows: repeat(var(--carousel__row-count), auto);
+    grid-auto-flow: column;
+    scroll-snap-type: x mandatory;
+    overflow: auto;
+    overscroll-behavior-x: none;
+}
+
+.inner-carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-content-container {
+    visibility: visible;
+    scroll-snap-align: start;
+    height: 500px;
+    transition: height 0.3s ease-in-out;
+
+}
+
+.carousel-content-container.hidden-carousel-slide {
+    visibility: hidden;
+}
+
+.carousel-content-wrapper {
+    height: 100%;
+    width: 1000px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.carousel-content-box {
+    background-color: black;
+    color: white;
+    height: 350px;
+    width: 600px;
+}
+
+.carousel-content-box img {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-navigation {
+    display: grid;
+    grid-area: pages;
+    position: relative;
+    width: 100%;
+}
+
+
+.carousel-tabs {
+    display: grid;
+    grid-auto-columns: minmax(auto, 3.75rem);
+    grid-auto-flow: column;
+    justify-content: center;
+    gap: 0.75rem;
+    grid-auto-columns: minmax(auto, 10.25rem);
+    padding-top: 20px;
+}
+
+.carousel-tab {
+    position: relative;
+    background-color: #1e1f24;
+    padding: 0.6875rem 0.5rem;
+    transition: background-color .2s ease;
+    cursor: pointer;
+}
+
+.active-tab {
+    background-color: #213944;
+}
+
+.carousel-tab:hover {
+    background-color: #2f5161c9;
+}
+
+.carousel-tab:active {
+    background-color: #213944a0;
+}
+
+.active-tab .carousel-tab-indicator {
+    background-color: #f8f8f8;
+    height: 0.25rem;
+    width: 100%;
+    background-color: #ffffff80;
+    height: 2px;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    transform: scaleY(1);
+    transition: opacity .15s ease;
+    z-index: 1;
+}
+
+.active-tab .carousel-tab-indicator::before {
+    background-color: #f47521;
+    content: "";
+    display: block;
+    height: 100%;
+    width: 0;
+    animation: progress 8s linear forwards;
+    animation-play-state: running;
+}
+
+
+@keyframes progress {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
